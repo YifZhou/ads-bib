@@ -1,6 +1,6 @@
 # ads-bib
 
-A local MCP server that retrieves verified BibTeX entries directly from NASA ADS, with a skill for Claude Desktop. Works with **Claude Desktop** and **Gemini CLI**. Every entry comes from a live ADS API call — no fabricated bibcodes or citation keys.
+A local MCP server that retrieves verified BibTeX entries directly from NASA ADS, with a skill for Claude Desktop. Works with **Claude Desktop**, **Gemini CLI**, and **OpenAI Codex**. Every entry comes from a live ADS API call — no fabricated bibcodes or citation keys.
 
 **Features**
 - Search NASA ADS with full query syntax (`author:`, `title:`, `abs:`, `year:`, `bibstem:`, etc.)
@@ -11,7 +11,7 @@ A local MCP server that retrieves verified BibTeX entries directly from NASA ADS
 
 ## What you need
 
-- [Claude Desktop](https://claude.ai/download) **or** [Gemini CLI](https://github.com/google-gemini/gemini-cli)
+- [Claude Desktop](https://claude.ai/download), [Gemini CLI](https://github.com/google-gemini/gemini-cli), or [OpenAI Codex](https://developers.openai.com/codex)
 - Python 3.10+ (Conda recommended)
 - A NASA ADS API token (free)
 
@@ -111,6 +111,24 @@ conda activate ads-bib
 fastmcp install gemini-cli ads_mcp_server.py
 ```
 
+### OpenAI Codex
+
+Codex supports local stdio MCP servers natively. The quickest way is the `codex mcp add` command:
+
+```bash
+codex mcp add ads -- /Users/yourname/opt/anaconda3/envs/ads-bib/bin/python /Users/yourname/Documents/ads-bib/ads_mcp_server.py
+```
+
+Or edit `~/.codex/config.toml` directly:
+
+```toml
+[mcp_servers.ads]
+command = "/Users/yourname/opt/anaconda3/envs/ads-bib/bin/python"
+args = ["/Users/yourname/Documents/ads-bib/ads_mcp_server.py"]
+```
+
+This configuration is shared between the Codex CLI and the Codex IDE extension — no need to set it up twice. No skill file is required; Codex discovers the `ads_search` and `ads_bibtex` tools automatically from the MCP server.
+
 ### ChatGPT
 
 ChatGPT currently only supports **remote** HTTPS MCP endpoints, not local stdio servers. Connecting `ads_mcp_server.py` to ChatGPT requires exposing it as a remote endpoint (e.g. via `mcp-remote` or a hosted server), which is significantly more complex. This is not recommended for most users.
@@ -123,13 +141,13 @@ ChatGPT currently only supports **remote** HTTPS MCP endpoints, not local stdio 
 2. Open Claude Desktop → **Settings → Skills**.
 3. Drag and drop `ads-bib.skill` into the Skills panel.
 
-> Gemini CLI users: the skill file is not needed. The MCP server registration in Step 5 is sufficient — Gemini will discover the `ads_search` and `ads_bibtex` tools automatically.
+> Gemini CLI and Codex users: the skill file is not needed. The MCP server registration in Step 5 is sufficient — the tools are discovered automatically.
 
 ---
 
 ## Step 7 — Restart your AI assistant
 
-Quit and relaunch Claude Desktop or Gemini CLI. The `ads` MCP server should now be connected.
+Quit and relaunch Claude Desktop, Gemini CLI, or Codex. The `ads` MCP server should now be connected.
 
 ---
 
@@ -167,7 +185,7 @@ The assistant will call `ads_search` to find matching papers and `ads_bibtex` to
 ## Troubleshooting
 
 **The `ads` tools don't appear**
-- Check that the `"ads"` entry is correctly nested inside `"mcpServers"`.
+- Check that the config entry is correctly formatted and in the right file for your client.
 - Verify the Python path points to the `ads-bib` conda environment: `conda activate ads-bib && which python`.
 - Confirm `mcp` and `requests` are installed in that environment: `pip list | grep -E "mcp|requests"`.
 - Restart the AI assistant after any config change.
