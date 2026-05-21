@@ -3,6 +3,7 @@
 A Claude Desktop skill + local MCP server that retrieves verified BibTeX entries directly from NASA ADS. Every entry comes from a live ADS API call — no fabricated bibcodes or citation keys.
 
 **Features**
+
 - Search NASA ADS with full query syntax (`author:`, `title:`, `abs:`, `year:`, `bibstem:`, etc.)
 - Cite keys formatted as `LastYYYY` (e.g. `Zhou2021`), with `a/b/c` suffixes for same-author-year collisions (e.g. `Zhou2022a`, `Zhou2022b`)
 - BibTeX output is verbatim from ADS — no fields added, removed, or reformatted
@@ -70,6 +71,7 @@ with your actual token from Step 1.
 ## Step 5 — Register the MCP server with Claude Desktop
 
 Open the Claude Desktop config file:
+
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
@@ -111,14 +113,13 @@ Once installed, ask Claude naturally — no special syntax needed:
 ```
 Find the bib entry for the Morley 2012 cloud paper
 ```
+
 ```
 Add citations for direct imaging of PDS 70 b
 ```
+
 ```
 Find all my first-author papers and output the bib entries
-```
-```
-Draft an introduction about brown dwarf variability with proper citations
 ```
 
 Claude will call `ads_search` to find matching papers and `ads_bibtex` to retrieve the entries, then output a ready-to-use BibTeX block with `LastYYYY` cite keys.
@@ -127,27 +128,31 @@ Claude will call `ads_search` to find matching papers and `ads_bibtex` to retrie
 
 ## File overview
 
-| File | Purpose |
-|---|---|
-| `SKILL.md` | Instructions that tell Claude how to use the ADS tools |
+| File                  | Purpose                                                               |
+| --------------------- | --------------------------------------------------------------------- |
+| `SKILL.md`          | Instructions that tell Claude how to use the ADS tools                |
 | `ads_mcp_server.py` | Local Python MCP server — wraps the ADS search and BibTeX export API |
-| `ads-bib.skill` | Packaged skill file for Claude Desktop (contains `SKILL.md`) |
+| `ads-bib.skill`     | Packaged skill file for Claude Desktop (contains `SKILL.md`)        |
 
 ---
 
 ## Troubleshooting
 
 **The `ads` tools don't appear in Claude Desktop**
+
 - Check that the `"ads"` entry is inside `"mcpServers"` (not outside the block).
 - Verify the Python path points to the `ads-bib` conda environment: `conda activate ads-bib && which python`.
 - Confirm `mcp` and `requests` are installed in that environment: `pip list | grep -E "mcp|requests"`.
 - Restart Claude Desktop after any config change.
 
 **HTTP 401 error**
+
 - Your API token is invalid or expired. Get a new one from https://ui.adsabs.harvard.edu/user/settings/token and update `ads_mcp_server.py`.
 
 **HTTP 429 error**
+
 - ADS rate limit hit. Wait a few seconds and retry. The free tier allows 5,000 requests/day.
 
 **Zero results**
+
 - Broaden the query: remove the year filter, or switch from `title:` to `abs:` with 3–4 distinctive keywords.
