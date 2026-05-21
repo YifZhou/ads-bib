@@ -1,42 +1,181 @@
-IyBhZHMtYmliCgpBIENsYXVkZSBEZXNrdG9wIHNraWxsICsgTUNQIHNlcnZlciBmb3IgcmV0cmll
-dmluZyB2ZXJpZmllZCBCaWJUZVggZW50cmllcyBmcm9tIE5BU0EgQURTLiBOZXZlciBmYWJyaWNh
-dGVzIGJpYmNvZGVzIG9yIGNpdGF0aW9uIGtleXMg4oCUIGV2ZXJ5IGVudHJ5IGNvbWVzIGZyb20g
-YSBsaXZlIEFEUyBBUEkgY2FsbC4KCiMjIEZlYXR1cmVzCgotIFNlYXJjaCBOQVNBIEFEUyB3aXRo
-IGZ1bGwgcXVlcnkgc3ludGF4IChgYXV0aG9yOmAsIGB0aXRsZTpgLCBgYWJzOmAsIGB5ZWFyOmAs
-IGBiaWJzdGVtOmAsIGV0Yy4pCi0gUmV0dXJucyBCaWJUZVggd2l0aCBgTGFzdFlZWVlgIGNpdGUg
-a2V5cyAoZS5nLiBgWmhvdTIwMjFgKSwgd2l0aCBgYS9iL2NgIHN1ZmZpeGVzIGZvciBzYW1lIGF1
-dGhvcit5ZWFyIGNvbGxpc2lvbnMKLSBXb3JrcyBzZWFtbGVzc2x5IHdoaWxlIGRyYWZ0aW5nIExh
-VGVYIHBhcGVycyBhbmQgcHJvcG9zYWxzIGluIENsYXVkZSBEZXNrdG9wCgojIyBTZXR1cAoKIyMj
-IDEuIEdldCBhIE5BU0EgQURTIEFQSSB0b2tlbgoKU2lnbiBpbiBhdCBodHRwczovL3VpLmFkc2Fi
-cy5oYXJ2YXJkLmVkdSBhbmQgZ28gdG8gKipTZXR0aW5ncyDihpIgQVBJIFRva2VuKiouCgojIyMg
-Mi4gSW5zdGFsbCBQeXRob24gZGVwZW5kZW5jaWVzCgpgYGBiYXNoCnBpcCBpbnN0YWxsIG1jcCBy
-ZXF1ZXN0cwpgYGAKCiMjIyAzLiBTYXZlIHRoZSBNQ1Agc2VydmVyCgpDb3B5IGBhZHNfbWNwX3Nl
-cnZlci5weWAgdG8gYSBwZXJtYW5lbnQgbG9jYXRpb24sIGUuZy4gYH4vRG9jdW1lbnRzL2Fkc19t
-Y3Bfc2VydmVyLnB5YC4KCk9wZW4gdGhlIGZpbGUgYW5kIHJlcGxhY2UgdGhlIEFQSSBrZXkgb24g
-dGhpcyBsaW5lOgoKYGBgcHl0aG9uCkFQSV9LRVkgID0gIllPVVJfQURTX0FQSV9UT0tFTl9IRVJF
-IgpgYGAKCiMjIyA0LiBBZGQgdG8gQ2xhdWRlIERlc2t0b3AgY29uZmlnCgpFZGl0IGB+L0xpYnJh
-cnkvQXBwbGljYXRpb24gU3VwcG9ydC9DbGF1ZGUvY2xhdWRlX2Rlc2t0b3BfY29uZmlnLmpzb25g
-IChtYWNPUykgYW5kIGFkZCB1bmRlciBgbWNwU2VydmVyc2A6CgpgYGBqc29uCiJhZHMiOiB7CiAg
-ImNvbW1hbmQiOiAiL3BhdGgvdG8veW91ci9weXRob24iLAogICJhcmdzIjogWyIvcGF0aC90by9h
-ZHNfbWNwX3NlcnZlci5weSJdCn0KYGBgCgpVc2UgdGhlIGZ1bGwgcGF0aCB0byB5b3VyIFB5dGhv
-biBpbnRlcnByZXRlciAoZS5nLiBgL1VzZXJzL3lvdS9vcHQvYW5hY29uZGEzL2Jpbi9weXRob25g
-KS4gUmVzdGFydCBDbGF1ZGUgRGVza3RvcC4KCiMjIyA1LiBJbnN0YWxsIHRoZSBza2lsbAoKRG93
-bmxvYWQgYGFkcy1iaWIuc2tpbGxgIGFuZCBpbnN0YWxsIGl0IHZpYSBDbGF1ZGUgRGVza3RvcCdz
-IHNraWxsIHNldHRpbmdzIChkcmFnIGFuZCBkcm9wLCBvciBTZXR0aW5ncyDihpIgU2tpbGxzKS4K
-CiMjIFVzYWdlCgpPbmNlIGluc3RhbGxlZCwganVzdCBhc2sgbmF0dXJhbGx5OgoKLSAqIkZpbmQg
-dGhlIGJpYiBlbnRyeSBmb3IgdGhlIE1vcmxleSAyMDEyIGNsb3VkIHBhcGVyIioKLSAqIkFkZCBj
-aXRhdGlvbnMgZm9yIGRpcmVjdCBpbWFnaW5nIG9mIFBEUyA3MCBiIioKLSAqIkZpbmQgYWxsIG15
-IGZpcnN0LWF1dGhvciBwYXBlcnMgYW5kIG91dHB1dCB0aGUgYmliIGVudHJpZXMiKgotICoiRHJh
-ZnQgYW4gaW50cm9kdWN0aW9uIHBhcmFncmFwaCBhYm91dCBicm93biBkd2FyZiB2YXJpYWJpbGl0
-eSB3aXRoIHByb3BlciBjaXRhdGlvbnMiKgoKQ2xhdWRlIHdpbGwgY2FsbCBgYWRzX3NlYXJjaGAg
-dG8gZmluZCB0aGUgcGFwZXJzIGFuZCBgYWRzX2JpYnRleGAgdG8gcmV0cmlldmUgdGhlIGVudHJp
-ZXMsIHRoZW4gb3V0cHV0IGEgcmVhZHktdG8tdXNlIEJpYlRlWCBibG9jay4KCiMjIEZpbGUgb3Zl
-cnZpZXcKCnwgRmlsZSB8IFB1cnBvc2UgfAp8LS0tfC0tLXwKfCBgU0tJTEwubWRgIHwgU2tpbGwg
-aW5zdHJ1Y3Rpb25zIGZvciBDbGF1ZGUgfAp8IGBhZHNfbWNwX3NlcnZlci5weWAgfCBMb2NhbCBQ
-eXRob24gTUNQIHNlcnZlciB3cmFwcGluZyB0aGUgQURTIEFQSSB8CnwgYGFkcy1iaWIuc2tpbGxg
-IHwgUGFja2FnZWQgc2tpbGwgZmlsZSBmb3IgQ2xhdWRlIERlc2t0b3AgfAoKIyMgTm90ZXMKCi0g
-VGhlIGBhZHNfbWNwX3NlcnZlci5weWAgaGFyZGNvZGVzIHRoZSBBUEkga2V5IGZvciBzaW1wbGlj
-aXR5LiBLZWVwIHRoaXMgZmlsZSBwcml2YXRlIGlmIHlvdSBzaGFyZSB5b3VyIG1hY2hpbmUuCi0g
-VGhlIEFEUyBmcmVlIHRpZXIgYWxsb3dzIDUsMDAwIHJlcXVlc3RzL2RheSwgd2hpY2ggaXMgbW9y
-ZSB0aGFuIHN1ZmZpY2llbnQgZm9yIG5vcm1hbCB1c2UuCi0gV29ya3MgYmVzdCBpbiBDbGF1ZGUg
-RGVza3RvcCB3aGVyZSB0aGUgTUNQIHNlcnZlciBoYXMgZGlyZWN0IG5ldHdvcmsgYWNjZXNzLgo=
+# ads-bib
+
+A Claude Desktop skill + local MCP server that retrieves verified BibTeX entries directly from NASA ADS. Claude will never fabricate bibcodes or citation keys — every entry comes from a live ADS API call.
+
+**Features**
+- Search NASA ADS with full query syntax (`author:`, `title:`, `abs:`, `year:`, `bibstem:`, etc.)
+- Cite keys formatted as `LastYYYY` (e.g. `Zhou2021`), with `a/b/c` suffixes for same-author-year collisions (e.g. `Zhou2022a`, `Zhou2022b`)
+- BibTeX output is verbatim from ADS — no fields added, removed, or reformatted
+- Works seamlessly while drafting LaTeX papers and proposals in Claude Desktop
+
+---
+
+## What you need
+
+- [Claude Desktop](https://claude.ai/download) (free or Pro)
+- Python 3.10+ with `pip`
+- A NASA ADS API token (free)
+
+---
+
+## Step 1 — Get a NASA ADS API token
+
+1. Go to https://ui.adsabs.harvard.edu and sign in (or create a free account).
+2. Navigate to **Settings → API Token**.
+3. Copy the token — you'll need it in Step 4.
+
+---
+
+## Step 2 — Install Python dependencies
+
+Open a terminal and run:
+
+```bash
+pip install mcp requests
+```
+
+If you use Conda, activate your environment first:
+
+```bash
+conda activate your_env
+pip install mcp requests
+```
+
+---
+
+## Step 3 — Download the MCP server script
+
+Download `ads_mcp_server.py` from this repo and save it somewhere permanent, for example:
+
+```
+~/Documents/ads_mcp_server.py
+```
+
+Or clone the whole repo:
+
+```bash
+git clone https://github.com/YifZhou/ads-bib.git ~/Documents/ads-bib
+```
+
+---
+
+## Step 4 — Add your API token
+
+Open `ads_mcp_server.py` in a text editor and replace the placeholder on this line:
+
+```python
+API_KEY  = "YOUR_ADS_API_TOKEN_HERE"
+```
+
+with your actual token from Step 1.
+
+---
+
+## Step 5 — Register the MCP server with Claude Desktop
+
+Open the Claude Desktop config file:
+
+- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+Add the following entry inside the `"mcpServers"` block. Use the **full path** to your Python interpreter and the script:
+
+```json
+{
+  "mcpServers": {
+    "ads": {
+      "command": "/full/path/to/python",
+      "args": ["/full/path/to/ads_mcp_server.py"]
+    }
+  }
+}
+```
+
+**Finding your Python path:**
+
+```bash
+# Standard Python
+which python3
+
+# Conda environment
+conda activate your_env && which python
+```
+
+**Example** (macOS with Anaconda):
+
+```json
+{
+  "mcpServers": {
+    "ads": {
+      "command": "/Users/yourname/opt/anaconda3/bin/python",
+      "args": ["/Users/yourname/Documents/ads_mcp_server.py"]
+    }
+  }
+}
+```
+
+If you already have other MCP servers configured, add `"ads"` alongside them — don't replace the existing entries.
+
+---
+
+## Step 6 — Install the Claude skill
+
+1. Download `ads-bib.skill` from this repo.
+2. Open Claude Desktop → **Settings → Skills**.
+3. Drag and drop `ads-bib.skill` into the Skills panel, or click the install button.
+
+---
+
+## Step 7 — Restart Claude Desktop
+
+Quit and relaunch Claude Desktop. The `ads` MCP server should now appear as connected.
+
+---
+
+## Usage
+
+Once installed, ask Claude naturally — no special syntax needed:
+
+```
+Find the bib entry for the Morley 2012 cloud paper
+```
+```
+Add citations for direct imaging of PDS 70 b
+```
+```
+Find all my first-author papers and output the bib entries
+```
+```
+Draft an introduction about brown dwarf variability with proper citations
+```
+
+Claude will call `ads_search` to find matching papers and `ads_bibtex` to retrieve the entries, then output a ready-to-use BibTeX block with `LastYYYY` cite keys.
+
+---
+
+## File overview
+
+| File | Purpose |
+|---|---|
+| `SKILL.md` | Instructions that tell Claude how to use the ADS tools |
+| `ads_mcp_server.py` | Local Python MCP server — wraps the ADS search and BibTeX export API |
+| `ads-bib.skill` | Packaged skill file for Claude Desktop (contains `SKILL.md`) |
+
+---
+
+## Troubleshooting
+
+**The `ads` tools don't appear in Claude Desktop**
+- Check that the `"ads"` entry is inside `"mcpServers"` (not outside the block).
+- Verify the Python path is correct: run `which python` in your terminal.
+- Make sure `mcp` and `requests` are installed in the Python environment you pointed to.
+- Restart Claude Desktop after any config change.
+
+**HTTP 401 error**
+- Your API token is invalid or expired. Get a new one from https://ui.adsabs.harvard.edu/user/settings/token and update `ads_mcp_server.py`.
+
+**HTTP 429 error**
+- ADS rate limit hit. Wait a few seconds and retry. The free tier allows 5,000 requests/day.
+
+**Zero results**
+- Broaden the query: remove the year filter, or switch from `title:` to `abs:` with 3–4 distinctive keywords.
