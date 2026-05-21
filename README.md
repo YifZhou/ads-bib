@@ -1,17 +1,18 @@
 # ads-bib
 
-A local MCP server that retrieves verified BibTeX entries directly from NASA ADS, with a skill for Claude Desktop. Works with **Claude Desktop**, **Gemini CLI**, and **OpenAI Codex**. Every entry comes from a live ADS API call — no fabricated bibcodes or citation keys.
+A Claude Desktop skill + local MCP server that retrieves verified BibTeX entries directly from NASA ADS. Every entry comes from a live ADS API call — no fabricated bibcodes or citation keys.
 
 **Features**
 - Search NASA ADS with full query syntax (`author:`, `title:`, `abs:`, `year:`, `bibstem:`, etc.)
 - Cite keys formatted as `LastYYYY` (e.g. `Zhou2021`), with `a/b/c` suffixes for same-author-year collisions (e.g. `Zhou2022a`, `Zhou2022b`)
 - BibTeX output is verbatim from ADS — no fields added, removed, or reformatted
+- Works seamlessly while drafting LaTeX papers and proposals in Claude Desktop
 
 ---
 
 ## What you need
 
-- [Claude Desktop](https://claude.ai/download), [Gemini CLI](https://github.com/google-gemini/gemini-cli), or [OpenAI Codex](https://developers.openai.com/codex)
+- [Claude Desktop](https://claude.ai/download) (free or Pro)
 - Python 3.10+ (Conda recommended)
 - A NASA ADS API token (free)
 
@@ -66,11 +67,9 @@ with your actual token from Step 1.
 
 ---
 
-## Step 5 — Register the MCP server
+## Step 5 — Register the MCP server with Claude Desktop
 
-### Claude Desktop
-
-Open the config file:
+Open the Claude Desktop config file:
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
@@ -87,73 +86,27 @@ Add the `"ads"` entry inside `"mcpServers"`:
 }
 ```
 
-Use the full Python path from Step 2. If you already have other MCP servers configured, add `"ads"` alongside them.
-
-### Gemini CLI
-
-Gemini CLI supports local stdio MCP servers natively. Add the server to `~/.gemini/settings.json`:
-
-```json
-{
-  "mcpServers": {
-    "ads": {
-      "command": "/Users/yourname/opt/anaconda3/envs/ads-bib/bin/python",
-      "args": ["/Users/yourname/Documents/ads-bib/ads_mcp_server.py"]
-    }
-  }
-}
-```
-
-Alternatively, if you have FastMCP installed (v2.12.3+), you can install it directly:
-
-```bash
-conda activate ads-bib
-fastmcp install gemini-cli ads_mcp_server.py
-```
-
-### OpenAI Codex
-
-Codex supports local stdio MCP servers natively. The quickest way is the `codex mcp add` command:
-
-```bash
-codex mcp add ads -- /Users/yourname/opt/anaconda3/envs/ads-bib/bin/python /Users/yourname/Documents/ads-bib/ads_mcp_server.py
-```
-
-Or edit `~/.codex/config.toml` directly:
-
-```toml
-[mcp_servers.ads]
-command = "/Users/yourname/opt/anaconda3/envs/ads-bib/bin/python"
-args = ["/Users/yourname/Documents/ads-bib/ads_mcp_server.py"]
-```
-
-This configuration is shared between the Codex CLI and the Codex IDE extension — no need to set it up twice. No skill file is required; Codex discovers the `ads_search` and `ads_bibtex` tools automatically from the MCP server.
-
-### ChatGPT
-
-ChatGPT currently only supports **remote** HTTPS MCP endpoints, not local stdio servers. Connecting `ads_mcp_server.py` to ChatGPT requires exposing it as a remote endpoint (e.g. via `mcp-remote` or a hosted server), which is significantly more complex. This is not recommended for most users.
+Use the full Python path from Step 2. If you already have other MCP servers configured, add `"ads"` alongside them — don't replace the existing entries.
 
 ---
 
-## Step 6 — Install the Claude skill (Claude Desktop only)
+## Step 6 — Install the Claude skill
 
 1. Download `ads-bib.skill` from this repo.
 2. Open Claude Desktop → **Settings → Skills**.
 3. Drag and drop `ads-bib.skill` into the Skills panel.
 
-> Gemini CLI and Codex users: the skill file is not needed. The MCP server registration in Step 5 is sufficient — the tools are discovered automatically.
-
 ---
 
-## Step 7 — Restart your AI assistant
+## Step 7 — Restart Claude Desktop
 
-Quit and relaunch Claude Desktop, Gemini CLI, or Codex. The `ads` MCP server should now be connected.
+Quit and relaunch Claude Desktop. The `ads` MCP server should now appear as connected.
 
 ---
 
 ## Usage
 
-Ask naturally — no special syntax needed:
+Once installed, ask Claude naturally — no special syntax needed:
 
 ```
 Find the bib entry for the Morley 2012 cloud paper
@@ -168,7 +121,7 @@ Find all my first-author papers and output the bib entries
 Draft an introduction about brown dwarf variability with proper citations
 ```
 
-The assistant will call `ads_search` to find matching papers and `ads_bibtex` to retrieve the entries, then output a ready-to-use BibTeX block with `LastYYYY` cite keys.
+Claude will call `ads_search` to find matching papers and `ads_bibtex` to retrieve the entries, then output a ready-to-use BibTeX block with `LastYYYY` cite keys.
 
 ---
 
@@ -184,11 +137,11 @@ The assistant will call `ads_search` to find matching papers and `ads_bibtex` to
 
 ## Troubleshooting
 
-**The `ads` tools don't appear**
-- Check that the config entry is correctly formatted and in the right file for your client.
+**The `ads` tools don't appear in Claude Desktop**
+- Check that the `"ads"` entry is inside `"mcpServers"` (not outside the block).
 - Verify the Python path points to the `ads-bib` conda environment: `conda activate ads-bib && which python`.
 - Confirm `mcp` and `requests` are installed in that environment: `pip list | grep -E "mcp|requests"`.
-- Restart the AI assistant after any config change.
+- Restart Claude Desktop after any config change.
 
 **HTTP 401 error**
 - Your API token is invalid or expired. Get a new one from https://ui.adsabs.harvard.edu/user/settings/token and update `ads_mcp_server.py`.
