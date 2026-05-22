@@ -7,7 +7,6 @@ A Claude Desktop skill + local MCP server that retrieves verified BibTeX entries
 - Search NASA ADS with full query syntax (`author:`, `title:`, `abs:`, `year:`, `bibstem:`, etc.)
 - Cite keys formatted as `LastYYYY` (e.g. `Zhou2021`), with `a/b/c` suffixes for same-author-year collisions (e.g. `Zhou2022a`, `Zhou2022b`)
 - BibTeX output is verbatim from ADS — no fields added, removed, or reformatted
-- Works seamlessly while drafting LaTeX papers and proposals in Claude Desktop
 
 ---
 
