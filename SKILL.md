@@ -98,6 +98,12 @@ is the cite key on the first line (e.g. `@ARTICLE{Zhou2021,`). Every other
 field — `author`, `title`, `journal`, `keywords`, `eprint`, `adsurl`,
 `adsnote`, etc. — must be reproduced verbatim.
 
+**Completeness is non-negotiable.** If N bibcodes were fetched, N entries
+must appear in the output. Never show a subset and describe the rest as
+"above" or omit them for brevity. If the full output is long, write it to
+a file via `create_file` and present it with `present_files` rather than
+truncating inline.
+
 If the user is working in LaTeX, also show the cite keys so they can use
 `\cite{key}` directly.
 
