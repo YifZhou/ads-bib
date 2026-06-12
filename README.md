@@ -3,6 +3,7 @@
 A local MCP server that retrieves verified BibTeX entries directly from NASA ADS, with a skill for Claude Desktop and OpenAI Codex. Every entry comes from a live ADS API call — no fabricated bibcodes or citation keys.
 
 **Features**
+
 - Search NASA ADS with full query syntax (`author:`, `title:`, `abs:`, `year:`, `bibstem:`, etc.)
 - Cite keys formatted as `LastYYYY` (e.g. `Zhou2021`), with `a/b/c` suffixes for same-author-year collisions (e.g. `Zhou2022a`, `Zhou2022b`)
 - BibTeX output is verbatim from ADS — no fields added, removed, or reformatted
@@ -69,6 +70,7 @@ with your actual token from Step 1.
 ### Claude Desktop
 
 Open the config file:
+
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
@@ -142,14 +144,13 @@ Ask naturally — no special syntax needed:
 ```
 Find the bib entry for the Morley 2012 cloud paper
 ```
+
 ```
-Add citations for direct imaging of PDS 70 b
+Search relevant papers in the last five years about accreting planets.
 ```
+
 ```
 Find all my first-author papers and output the bib entries
-```
-```
-Draft an introduction about brown dwarf variability with proper citations
 ```
 
 The assistant will call `ads_search` to find matching papers and `ads_bibtex` to retrieve the entries, then output a ready-to-use BibTeX block with `LastYYYY` cite keys.
@@ -158,17 +159,18 @@ The assistant will call `ads_search` to find matching papers and `ads_bibtex` to
 
 ## File overview
 
-| File | Purpose |
-|---|---|
-| `SKILL.md` | Skill instructions (also bundled inside `ads-bib.skill`) |
+| File                  | Purpose                                                               |
+| --------------------- | --------------------------------------------------------------------- |
+| `SKILL.md`          | Skill instructions (also bundled inside `ads-bib.skill`)            |
 | `ads_mcp_server.py` | Local Python MCP server — wraps the ADS search and BibTeX export API |
-| `ads-bib.skill` | Packaged skill file for Claude Desktop and Codex |
+| `ads-bib.skill`     | Packaged skill file for Claude Desktop and Codex                      |
 
 ---
 
 ## Troubleshooting
 
 **The `ads` tools don't appear**
+
 - Check that the config entry is correctly formatted and in the right file for your client.
 - Verify the Python path points to the `ads-bib` conda environment: `conda activate ads-bib && which python`.
 - Confirm `mcp` and `requests` are installed in that environment: `pip list | grep -E "mcp|requests"`.
@@ -176,10 +178,13 @@ The assistant will call `ads_search` to find matching papers and `ads_bibtex` to
 - For Codex: run `/mcp` inside a session to list active servers.
 
 **HTTP 401 error**
+
 - Your API token is invalid or expired. Get a new one from https://ui.adsabs.harvard.edu/user/settings/token and update `ads_mcp_server.py`.
 
 **HTTP 429 error**
+
 - ADS rate limit hit. Wait a few seconds and retry. The free tier allows 5,000 requests/day.
 
 **Zero results**
+
 - Broaden the query: remove the year filter, or switch from `title:` to `abs:` with 3–4 distinctive keywords.
