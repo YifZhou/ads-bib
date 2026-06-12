@@ -1,9 +1,8 @@
 # ads-bib
 
-A Claude Desktop skill + local MCP server that retrieves verified BibTeX entries directly from NASA ADS. Every entry comes from a live ADS API call — no fabricated bibcodes or citation keys.
+A local MCP server that retrieves verified BibTeX entries directly from NASA ADS, with a skill for Claude Desktop and OpenAI Codex. Every entry comes from a live ADS API call — no fabricated bibcodes or citation keys.
 
 **Features**
-
 - Search NASA ADS with full query syntax (`author:`, `title:`, `abs:`, `year:`, `bibstem:`, etc.)
 - Cite keys formatted as `LastYYYY` (e.g. `Zhou2021`), with `a/b/c` suffixes for same-author-year collisions (e.g. `Zhou2022a`, `Zhou2022b`)
 - BibTeX output is verbatim from ADS — no fields added, removed, or reformatted
@@ -12,7 +11,7 @@ A Claude Desktop skill + local MCP server that retrieves verified BibTeX entries
 
 ## What you need
 
-- [Claude Desktop](https://claude.ai/download) (free or Pro)
+- [Claude Desktop](https://claude.ai/download) **or** [OpenAI Codex CLI](https://developers.openai.com/codex/cli)
 - Python 3.10+ (Conda recommended)
 - A NASA ADS API token (free)
 
@@ -45,9 +44,7 @@ which python   # e.g. /Users/yourname/opt/anaconda3/envs/ads-bib/bin/python
 
 ---
 
-## Step 3 — Download the MCP server script
-
-Clone this repo or download `ads_mcp_server.py` directly:
+## Step 3 — Clone this repo
 
 ```bash
 git clone https://github.com/YifZhou/ads-bib.git ~/Documents/ads-bib
@@ -67,10 +64,11 @@ with your actual token from Step 1.
 
 ---
 
-## Step 5 — Register the MCP server with Claude Desktop
+## Step 5 — Register the MCP server
 
-Open the Claude Desktop config file:
+### Claude Desktop
 
+Open the config file:
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
@@ -87,71 +85,101 @@ Add the `"ads"` entry inside `"mcpServers"`:
 }
 ```
 
-Use the full Python path from Step 2. If you already have other MCP servers configured, add `"ads"` alongside them — don't replace the existing entries.
+If you already have other MCP servers configured, add `"ads"` alongside them — don't replace the existing entries.
+
+### OpenAI Codex CLI
+
+Codex supports local stdio MCP servers natively. The quickest setup is the `codex mcp add` command:
+
+```bash
+codex mcp add ads -- /Users/yourname/opt/anaconda3/envs/ads-bib/bin/python /Users/yourname/Documents/ads-bib/ads_mcp_server.py
+```
+
+Or edit `~/.codex/config.toml` directly:
+
+```toml
+[mcp_servers.ads]
+command = "/Users/yourname/opt/anaconda3/envs/ads-bib/bin/python"
+args = ["/Users/yourname/Documents/ads-bib/ads_mcp_server.py"]
+```
+
+The Codex CLI and IDE extension share this config — no need to set it up twice. To verify the server is connected, run `/mcp` inside a Codex session.
 
 ---
 
-## Step 6 — Install the Claude skill
+## Step 6 — Install the skill
+
+### Claude Desktop
 
 1. Download `ads-bib.skill` from this repo.
 2. Open Claude Desktop → **Settings → Skills**.
 3. Drag and drop `ads-bib.skill` into the Skills panel.
 
+### OpenAI Codex CLI
+
+The `.skill` file is a zip archive. Unzip it and copy the skill directory to `~/.codex/skills/`:
+
+```bash
+unzip ads-bib.skill -d /tmp/ads-bib-extracted
+mkdir -p ~/.codex/skills
+cp -r /tmp/ads-bib-extracted/ads-bib ~/.codex/skills/
+```
+
+Codex will automatically discover the skill at `~/.codex/skills/ads-bib/SKILL.md` on next launch.
+
 ---
 
-## Step 7 — Restart Claude Desktop
+## Step 7 — Restart your AI assistant
 
-Quit and relaunch Claude Desktop. The `ads` MCP server should now appear as connected.
+Quit and relaunch Claude Desktop or Codex CLI. The `ads` MCP server should now be connected and the skill active.
 
 ---
 
 ## Usage
 
-Once installed, ask Claude naturally — no special syntax needed:
+Ask naturally — no special syntax needed:
 
 ```
 Find the bib entry for the Morley 2012 cloud paper
 ```
-
 ```
 Add citations for direct imaging of PDS 70 b
 ```
-
 ```
 Find all my first-author papers and output the bib entries
 ```
+```
+Draft an introduction about brown dwarf variability with proper citations
+```
 
-Claude will call `ads_search` to find matching papers and `ads_bibtex` to retrieve the entries, then output a ready-to-use BibTeX block with `LastYYYY` cite keys.
+The assistant will call `ads_search` to find matching papers and `ads_bibtex` to retrieve the entries, then output a ready-to-use BibTeX block with `LastYYYY` cite keys.
 
 ---
 
 ## File overview
 
-| File                  | Purpose                                                               |
-| --------------------- | --------------------------------------------------------------------- |
-| `SKILL.md`          | Instructions that tell Claude how to use the ADS tools                |
+| File | Purpose |
+|---|---|
+| `SKILL.md` | Skill instructions (also bundled inside `ads-bib.skill`) |
 | `ads_mcp_server.py` | Local Python MCP server — wraps the ADS search and BibTeX export API |
-| `ads-bib.skill`     | Packaged skill file for Claude Desktop (contains `SKILL.md`)        |
+| `ads-bib.skill` | Packaged skill file for Claude Desktop and Codex CLI |
 
 ---
 
 ## Troubleshooting
 
-**The `ads` tools don't appear in Claude Desktop**
-
-- Check that the `"ads"` entry is inside `"mcpServers"` (not outside the block).
+**The `ads` tools don't appear**
+- Check that the config entry is correctly formatted and in the right file for your client.
 - Verify the Python path points to the `ads-bib` conda environment: `conda activate ads-bib && which python`.
 - Confirm `mcp` and `requests` are installed in that environment: `pip list | grep -E "mcp|requests"`.
-- Restart Claude Desktop after any config change.
+- Restart the AI assistant after any config change.
+- For Codex: run `/mcp` inside a session to list active servers.
 
 **HTTP 401 error**
-
 - Your API token is invalid or expired. Get a new one from https://ui.adsabs.harvard.edu/user/settings/token and update `ads_mcp_server.py`.
 
 **HTTP 429 error**
-
 - ADS rate limit hit. Wait a few seconds and retry. The free tier allows 5,000 requests/day.
 
 **Zero results**
-
 - Broaden the query: remove the year filter, or switch from `title:` to `abs:` with 3–4 distinctive keywords.
