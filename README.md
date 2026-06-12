@@ -11,7 +11,7 @@ A local MCP server that retrieves verified BibTeX entries directly from NASA ADS
 
 ## What you need
 
-- [Claude Desktop](https://claude.ai/download) **or** [OpenAI Codex CLI](https://developers.openai.com/codex/cli)
+- [Claude Desktop](https://claude.ai/download) **or** [OpenAI Codex](https://developers.openai.com/codex) (CLI or desktop app)
 - Python 3.10+ (Conda recommended)
 - A NASA ADS API token (free)
 
@@ -87,9 +87,9 @@ Add the `"ads"` entry inside `"mcpServers"`:
 
 If you already have other MCP servers configured, add `"ads"` alongside them — don't replace the existing entries.
 
-### OpenAI Codex CLI
+### OpenAI Codex (CLI and desktop app)
 
-Codex supports local stdio MCP servers natively. The quickest setup is the `codex mcp add` command:
+Codex supports local stdio MCP servers natively, and the CLI and desktop app share the same config. The quickest setup is the `codex mcp add` command:
 
 ```bash
 codex mcp add ads -- /Users/yourname/opt/anaconda3/envs/ads-bib/bin/python /Users/yourname/Documents/ads-bib/ads_mcp_server.py
@@ -103,7 +103,7 @@ command = "/Users/yourname/opt/anaconda3/envs/ads-bib/bin/python"
 args = ["/Users/yourname/Documents/ads-bib/ads_mcp_server.py"]
 ```
 
-The Codex CLI and IDE extension share this config — no need to set it up twice. To verify the server is connected, run `/mcp` inside a Codex session.
+To verify the server is connected, run `/mcp` inside a Codex session.
 
 ---
 
@@ -115,9 +115,9 @@ The Codex CLI and IDE extension share this config — no need to set it up twice
 2. Open Claude Desktop → **Settings → Skills**.
 3. Drag and drop `ads-bib.skill` into the Skills panel.
 
-### OpenAI Codex CLI
+### OpenAI Codex (CLI and desktop app)
 
-The `.skill` file is a zip archive. Unzip it and copy the skill directory to `~/.codex/skills/`:
+The `.skill` file is a zip archive. Unzip it and copy the skill directory to `~/.codex/skills/`. This works for both the CLI and the desktop app — they share the same skills directory.
 
 ```bash
 unzip ads-bib.skill -d /tmp/ads-bib-extracted
@@ -131,7 +131,7 @@ Codex will automatically discover the skill at `~/.codex/skills/ads-bib/SKILL.md
 
 ## Step 7 — Restart your AI assistant
 
-Quit and relaunch Claude Desktop or Codex CLI. The `ads` MCP server should now be connected and the skill active.
+Quit and relaunch Claude Desktop or Codex. The `ads` MCP server should now be connected and the skill active.
 
 ---
 
@@ -162,7 +162,7 @@ The assistant will call `ads_search` to find matching papers and `ads_bibtex` to
 |---|---|
 | `SKILL.md` | Skill instructions (also bundled inside `ads-bib.skill`) |
 | `ads_mcp_server.py` | Local Python MCP server — wraps the ADS search and BibTeX export API |
-| `ads-bib.skill` | Packaged skill file for Claude Desktop and Codex CLI |
+| `ads-bib.skill` | Packaged skill file for Claude Desktop and Codex |
 
 ---
 
